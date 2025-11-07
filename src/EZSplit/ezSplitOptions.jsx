@@ -4,18 +4,11 @@ const EZSplitOptions = () => {
   const navigate = useNavigate();
   const handlePayInFull = () => {
     // Navigate to Pay in Full page
-    // App routes use /table/:tableNumber/guests for number of guests
-    navigate(`/table/${tableNumber}/FullPaymentPage`);
+    navigate(`/table/${tableNumber}/pay-full`);
   };
-  const handleSplitEvenly = () => {
-    // Navigate to the Split Evenly page (top-level route)
-    navigate(`/SplitEvenlyPayment`);
-  };
-
-  const handleCustomSplit = () => {
-    // Navigate to item selection for custom split (table-scoped)
-    if (tableNumber) navigate(`/table/${tableNumber}/select-items`);
-    else navigate(`/table/1/select-items`);
+  const handleEZSplit = () => {
+    // Navigate to EZSplit page
+    navigate(`/table/${tableNumber}/ezsplit`);
   };
   return (
     <div className="ezsplit-options-container">
@@ -47,24 +40,12 @@ const EZSplitOptions = () => {
             </button>
             <button
               className="option-button ezsplit-button"
-              onClick={handleSplitEvenly}
+              onClick={handleEZSplit}
             >
-              <div className="button-icon">💳</div>
+              <div className="button-icon">🪓</div>
               <div className="button-content">
                 <h3>EZSplit</h3>
                 <p>Split the bill among multiple people</p>
-              </div>
-            </button>
-          </div>
-          <div className="button-container">
-            <button
-              className="option-button custom-split-button"
-              onClick={handleCustomSplit}
-            >
-              <div className="button-icon">💳</div>
-              <div className="button-content">
-                <h3>Custom Split</h3>
-                <p>Select items for each guest</p>
               </div>
             </button>
           </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+
 const Home = () => {
   const [tableNumber, setTableNumber] = useState("");
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const Home = () => {
     e.preventDefault();
     if (tableNumber.trim()) {
       // Navigate to EZSplit Options page with table number
-      navigate(`/table/${tableNumber}/NumberOfGuests`);
+      navigate(`/table/${tableNumber}/options`);
     }
   };
   return (

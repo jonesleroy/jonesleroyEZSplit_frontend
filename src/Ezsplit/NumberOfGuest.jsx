@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-
 const NumberOfGuests = () => {
   const [guestCount, setGuestCount] = useState("");
   const navigate = useNavigate();
   const { tableNumber } = useParams();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (guestCount.trim()) {
+    if (guestCount && String(guestCount).trim()) {
+      // after entering number of guests, go to the full payment page for this table
       navigate(`/table/${tableNumber}/options`);
     }
   };

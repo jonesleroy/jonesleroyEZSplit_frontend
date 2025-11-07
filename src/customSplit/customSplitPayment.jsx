@@ -1,21 +1,14 @@
 import { useParams, useNavigate } from "react-router";
-const EZSplitOptions = () => {
+const CustomOrSplit = () => {
   const { tableNumber } = useParams();
   const navigate = useNavigate();
-  const handlePayInFull = () => {
-    // Navigate to Pay in Full page
-    // App routes use /table/:tableNumber/guests for number of guests
-    navigate(`/table/${tableNumber}/FullPaymentPage`);
-  };
   const handleSplitEvenly = () => {
-    // Navigate to the Split Evenly page (top-level route)
-    navigate(`/SplitEvenlyPayment`);
+    // Navigate to Pay in Full page
+    navigate(`/table/${tableNumber}/split-evenly`);
   };
-
   const handleCustomSplit = () => {
-    // Navigate to item selection for custom split (table-scoped)
-    if (tableNumber) navigate(`/table/${tableNumber}/select-items`);
-    else navigate(`/table/1/select-items`);
+    // Navigate to EZSplit page
+    navigate(`/table/${tableNumber}/custom-split`);
   };
   return (
     <div className="ezsplit-options-container">
@@ -30,41 +23,29 @@ const EZSplitOptions = () => {
       {/* Main Content */}
       <main className="options-main">
         <div className="options-section">
-          <h2>Choose Your Payment Option</h2>
+          <h2>Choose EZSplit Option</h2>
           <p className="options-subtitle">
-            How would you like to handle your bill?
+            How would you like to split your bill?
           </p>
           <div className="button-container">
             <button
               className="option-button pay-full-button"
-              onClick={handlePayInFull}
+              onClick={handleSplitEvenly}
             >
-              <div className="button-icon">💳</div>
+              <div className="button-icon">:scales:</div>
               <div className="button-content">
-                <h3>Pay in Full</h3>
-                <p>One person pays the entire bill</p>
+                <h3>Split Evenly</h3>
+                <p>Split check into even payments between all guests</p>
               </div>
             </button>
             <button
               className="option-button ezsplit-button"
-              onClick={handleSplitEvenly}
-            >
-              <div className="button-icon">💳</div>
-              <div className="button-content">
-                <h3>EZSplit</h3>
-                <p>Split the bill among multiple people</p>
-              </div>
-            </button>
-          </div>
-          <div className="button-container">
-            <button
-              className="option-button custom-split-button"
               onClick={handleCustomSplit}
             >
-              <div className="button-icon">💳</div>
+              <div className="button-icon">:art:</div>
               <div className="button-content">
                 <h3>Custom Split</h3>
-                <p>Select items for each guest</p>
+                <p>Select items to pay for from bill</p>
               </div>
             </button>
           </div>
@@ -79,4 +60,4 @@ const EZSplitOptions = () => {
     </div>
   );
 };
-export default EZSplitOptions;
+export default CustomOrSplit;
