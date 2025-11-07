@@ -52,7 +52,7 @@ const Home = () => {
                 type="text"
                 value={tableNumber}
                 onChange={(e) => setTableNumber(e.target.value)}
-                placeholder="Enter table number (e.g., 15)"
+                placeholder="Enter table number (1 - 20)"
                 className="table-input"
                 required
               />
