@@ -163,3 +163,4 @@ Page 11 (S7) : Split Between X Amount Page
 				○ Logo should be displayed with tag line "Making dining fun."
 	
 
+
