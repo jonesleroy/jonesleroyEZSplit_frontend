@@ -1,70 +1,73 @@
-import { Routes, Route } from "react-router";
+import { Route, Routes, Navigate, useParams } from "react-router";
 import Layout from "./layout/Layout";
-// import Navbar from "./layout/Navbar.jsx"
-import Home from "./Ezsplit/Home";
-import EZsplitOptions from "./Ezsplit/EzsplitOptions";
-import FullPaymentPage from "./PayInFull/FullPayment";
-import SplitEvenlyPayment from "./splitEvenly/SplitEvenlyPayment";
-import Confirmation from "./sharedFunctions/Confirmation";
-import Receipt from "./sharedFunctions/Receipt";
-import ThankYou from "./sharedFunctions/ThankYou";
-import NumberOfGuests from "./Ezsplit/NumberOfGuest";
-//import CustomSplitPayment from "./customSplit/customSplitPayment";
-import CustomOrSplit from "./customSplit/customSplitPayment";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import Home from "./ezSplit/home";
+//import SimpleHome from "./SimpleHome";
+import TestPage from "./TestPage";
+import ApiTest from "./ApiTest";
+import EZSplitOptions from "./ezSplit/ezSplitOptions";
+import NumberOfGuests from "./ezSplit/numberofGuests";
+import EZSplitPaymentPage from "./ezSplit/ezSplit-PaymentPage";
+import SplitEvenlyPaymentPage from "./splitEvenly/splitEvenlyPaymentPage";
+import CustomSplitPaymentPage from "./customSplit/customSplitPaymentPage";
 import SelectItems from "./customSplit/selectItems";
-import PayForCustomSplit from "./customSplit/PayFormCustomSplit";
+import FullPaymentPage from "./payInFull/fullPaymentPage";
+//import PaymentConfirmation from "./sharedFunctions/confirmation";
+import ReceiptPage from "./sharedFunctions/receipt";
+import ThankYouPage from "./sharedFunctions/thankYou";
+
+// Component to handle payment route redirects
+const PaymentRedirect = () => {
+  const { tableNumber } = useParams();
+  return <Navigate to={`/table/${tableNumber}/options`} replace />;
+};
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route
-          path="/table/:tableNumber/NumberOfGuests"
-          element={<NumberOfGuests />}
-        />
+        <Route path="/test" element={<TestPage />} />
+        <Route path="/api-test" element={<ApiTest />} />
+        <Route path="/table/:tableNumber/options" element={<EZSplitOptions />} />
+        <Route path="/table/:tableNumber/pay-full" element={<FullPaymentPage />} />
+        <Route path="/table/:tableNumber/number-of-guests" element={<NumberOfGuests />} />  
+        <Route path="/table/:tableNumber/ezsplit-payment/:guestCount" element={<EZSplitPaymentPage />} />
+        <Route path="/table/:tableNumber/split-evenly/:guestCount" element={<SplitEvenlyPaymentPage />} />
+        <Route path="/table/:tableNumber/select-items" element={<SelectItems />} />
+        <Route path="/table/:tableNumber/custom-split-payment" element={<CustomSplitPaymentPage />} />
 
-        <Route
-          path="table/:tableNumber/options"
-          element={<EZsplitOptions />}
-        />
-        <Route
-          path="/table/:tableNumber/FullPaymentPage"
-          element={<FullPaymentPage />}
-        />
-        <Route path="table/:tableNumber/guests" element={<NumberOfGuests />} />
-        <Route
-          path="table/:tableNumber/select-items"
-          element={<SelectItems />}
-        />
-        <Route
-          path="table/:tableNumber/customSplitPayment"
-          element={<CustomOrSplit />}
-        />
-        <Route
-          path="table/:tableNumber/select-items"
-          element={<SelectItems />}
-        />
-        <Route
-          path="table/:tableNumber/customSplitPayment"
-          element={<customSplitPayment />}
-        />
-        <Route
-          path="table/:tableNumber/NumberOfGuests "
-          element={<NumberOfGuests  />}
-        />
-        <Route
-          path="table/:tableNumber/PayForCustomSplit"
-          element={<PayForCustomSplit />}
-        />
+        <Route path="/table/:tableNumber/receipt" element={<ReceiptPage />} />
+        <Route path="/table/:tableNumber/thank-you" element={<ThankYouPage />} />
         
-       
-        <Route path="table/:tableNumber/receipt" element={<Receipt />} />
-        <Route path="table/:tableNumber/thank-you" element={<ThankYou />} />
-        <Route path="Confirmation" element={<Confirmation />} />
-        <Route path="SplitEvenlyPayment" element={<SplitEvenlyPayment />} />
-        <Route path="CustomOrSplit" element={<CustomOrSplit />} />
-      </Route>
+        {/* Redirect old payment route to options page */}
+        <Route path="/table/:tableNumber/payment" element={<PaymentRedirect />} />
+        
+        {/* Redirect standalone /options to home page */}
+        <Route path="/options" element={<Navigate to="/" replace />} />
+        
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} /> */
+      /*{" "}
+      </Route> */}
+      <Route index element={<Home />} />
+      <Route path="/table/:tableNumber/options" element={<EZsplitOptions />} />
+
+      <Route
+        path="/table/:tableNumber/ezsplit"
+        element={<CustomOrSplit />}
+      ></Route>
+      <Route path="/menu" element={<SelectItems />}></Route>
+      {/* <Route path="/table/pay-full" element={<PayInFull />}></Route>*{" "} */}
+      {/* <Route path="/Confirmation" element={<Confirmation />}></Route>
+      <Route path="Receipt" element={<Receipt />}></Route>
+      <Route path="ThankYou" element={<ThankYou />}></Route>
+      <Route
+        path="/SplitEvenlyPayment"
+        element={<SplitEvenlyPayment />}
+      ></Route>
+      <Route path="/customSplit" element={<customSplit />}></Route> */}
     </Routes>
   );
 }

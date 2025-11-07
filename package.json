@@ -1,5 +1,5 @@
 {
-  "name": "foobar",
+  "name": "ezsplit",
   "type": "module",
   "scripts": {
     "dev": "vite",
