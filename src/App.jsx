@@ -1,9 +1,6 @@
 import { Route, Routes, Navigate, useParams } from "react-router";
 import Layout from "./layout/Layout";
-import Login from "./auth/Login";
-import Register from "./auth/Register";
 import Home from "./ezSplit/home";
-//import SimpleHome from "./SimpleHome";
 import TestPage from "./TestPage";
 import ApiTest from "./ApiTest";
 import EZSplitOptions from "./ezSplit/ezSplitOptions";
@@ -13,7 +10,6 @@ import SplitEvenlyPaymentPage from "./splitEvenly/splitEvenlyPaymentPage";
 import CustomSplitPaymentPage from "./customSplit/customSplitPaymentPage";
 import SelectItems from "./customSplit/selectItems";
 import FullPaymentPage from "./payInFull/fullPaymentPage";
-//import PaymentConfirmation from "./sharedFunctions/confirmation";
 import ReceiptPage from "./sharedFunctions/receipt";
 import ThankYouPage from "./sharedFunctions/thankYou";
 
@@ -47,8 +43,6 @@ export default function App() {
         {/* Redirect standalone /options to home page */}
         <Route path="/options" element={<Navigate to="/" replace />} />
         
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
       </Route>
     </Routes>
   );
