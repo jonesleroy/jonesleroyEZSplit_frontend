@@ -31,14 +31,14 @@ const FullPaymentPage = () => {
         );
 
         // First try the table-specific endpoint
-        let response = await fetch(`http://localhost:3000/menu/${tableNumber}`);
+        let response = await fetch(`https://ezsplit.onrender.com/menu/${tableNumber}`);
 
         // If that fails, try the general menu endpoint
         if (!response.ok) {
           console.log(
             "Table-specific endpoint failed, trying general menu endpoint"
           );
-          response = await fetch("http://localhost:3000/menu");
+          response = await fetch("https://ezsplit.onrender.com/menu");
         }
 
         if (!response.ok) {

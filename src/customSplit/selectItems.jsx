@@ -17,11 +17,13 @@ const SelectItems = () => {
       try {
         // Fetch menu data from backend API
         const response = await fetch(
-          `http://localhost:3000/menu/${tableNumber}`
+          `https://ezsplit.onrender.com/menu/${tableNumber}`
         );
         if (!response.ok) {
           // If table-specific menu fails, try getting all menus
-          const allMenusResponse = await fetch("http://localhost:3000/menu");
+          const allMenusResponse = await fetch(
+            "https://ezsplit.onrender.com/menu"
+          );
           if (!allMenusResponse.ok) {
             throw new Error("Failed to fetch menu data");
           }

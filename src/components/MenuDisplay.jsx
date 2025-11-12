@@ -13,7 +13,7 @@ const MenuDisplay = ({ tableNumber = "1" }) => {
 
       try {
         // Try to fetch from backend API first
-        const backendUrl = `http://localhost:3000/menu/${tableNumber}`;
+        const backendUrl = `https://ezsplit.onrender.com/menu/${tableNumber}`;
         let menu;
 
         try {

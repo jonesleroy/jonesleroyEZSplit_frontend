@@ -23,7 +23,7 @@ export const mockApiService = {
 // Check if we're in development and backend is not available
 export const isBackendAvailable = async () => {
   try {
-    const response = await fetch("http://localhost:3000/", {
+    const response = await fetch("https://ezsplit.onrender.com", {
       method: "GET",
       timeout: 2000,
     });
