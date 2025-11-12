@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mockApiService } from "../api/mockApi";
+import { mockApiService } from "./api/mockApi";
 
 const MenuDisplay = ({ tableNumber = "1" }) => {
   const [menuItems, setMenuItems] = useState([]);
@@ -10,12 +10,12 @@ const MenuDisplay = ({ tableNumber = "1" }) => {
     const loadMenu = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         // Try to fetch from backend API first
         const backendUrl = `http://localhost:3000/menu/${tableNumber}`;
         let menu;
-        
+
         try {
           const response = await fetch(backendUrl);
           if (response.ok) {
@@ -25,7 +25,10 @@ const MenuDisplay = ({ tableNumber = "1" }) => {
             throw new Error("Backend not available");
           }
         } catch (backendError) {
-          console.log("Backend not available, using mock data:", backendError.message);
+          console.log(
+            "Backend not available, using mock data:",
+            backendError.message
+          );
           // Fallback to mock data
           menu = await mockApiService.getMenuByTable(tableNumber);
         }
@@ -43,7 +46,10 @@ const MenuDisplay = ({ tableNumber = "1" }) => {
   }, [tableNumber]);
 
   const calculateTotal = () => {
-    return menuItems.reduce((total, item) => total + (parseFloat(item.prices || item.price) || 0), 0);
+    return menuItems.reduce(
+      (total, item) => total + (parseFloat(item.prices || item.price) || 0),
+      0
+    );
   };
 
   if (loading) {
@@ -68,7 +74,7 @@ const MenuDisplay = ({ tableNumber = "1" }) => {
         <h2>Restaurant Menu - Table #{tableNumber}</h2>
         <p className="menu-subtitle">Choose from our delicious selection</p>
       </div>
-      
+
       <div className="menu-items">
         {menuItems.length > 0 ? (
           <>
@@ -87,14 +93,22 @@ const MenuDisplay = ({ tableNumber = "1" }) => {
                 </div>
               </div>
             ))}
-            
+
             <div className="menu-summary">
-              <div className="total-items">
-                Total Items: {menuItems.length}
-              </div>
+              <div className="total-items">Total Items: {menuItems.length}</div>
               <div className="price-range">
-                Price Range: ${Math.min(...menuItems.map(item => parseFloat(item.prices || item.price) || 0)).toFixed(2)} - 
-                ${Math.max(...menuItems.map(item => parseFloat(item.prices || item.price) || 0)).toFixed(2)}
+                Price Range: $
+                {Math.min(
+                  ...menuItems.map(
+                    (item) => parseFloat(item.prices || item.price) || 0
+                  )
+                ).toFixed(2)}{" "}
+                - $
+                {Math.max(
+                  ...menuItems.map(
+                    (item) => parseFloat(item.prices || item.price) || 0
+                  )
+                ).toFixed(2)}
               </div>
               <div className="menu-total">
                 Total Menu Value: ${calculateTotal().toFixed(2)}

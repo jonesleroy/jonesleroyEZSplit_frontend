@@ -16,12 +16,14 @@ const SelectItems = () => {
       setLoading(true);
       try {
         // Fetch menu data from backend API
-        const response = await fetch(`http://localhost:3000/menu/${tableNumber}`);
+        const response = await fetch(
+          `http://localhost:3000/menu/${tableNumber}`
+        );
         if (!response.ok) {
           // If table-specific menu fails, try getting all menus
-          const allMenusResponse = await fetch('http://localhost:3000/menu');
+          const allMenusResponse = await fetch("http://localhost:3000/menu");
           if (!allMenusResponse.ok) {
-            throw new Error('Failed to fetch menu data');
+            throw new Error("Failed to fetch menu data");
           }
           const allMenus = await allMenusResponse.json();
           const formattedItems = allMenus.map((m) => ({
@@ -36,12 +38,15 @@ const SelectItems = () => {
           const tableMenu = await response.json();
           const formattedItems = tableMenu.map((m) => ({
             id: m.id,
-            name: m.items || "Unnamed Item", 
+            name: m.items || "Unnamed Item",
             price: parseFloat(m.prices || 0),
             selectedBy: null,
           }));
           setItems(formattedItems);
-          console.log("Loaded table-specific menu from backend:", formattedItems);
+          console.log(
+            "Loaded table-specific menu from backend:",
+            formattedItems
+          );
         }
       } catch (error) {
         console.error("Failed to load menu data from backend:", error);
@@ -150,21 +155,3 @@ const SelectItems = () => {
   );
 };
 export default SelectItems;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

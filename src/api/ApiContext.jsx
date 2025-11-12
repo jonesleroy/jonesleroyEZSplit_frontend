@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-export const API = "https://ezsplit-backend.onrender.com";
+export const API = "http://localhost:3000";
 const ApiContext = createContext();
 export function ApiProvider({ children }) {
   const headers = { "Content-Type": "application/json" };
