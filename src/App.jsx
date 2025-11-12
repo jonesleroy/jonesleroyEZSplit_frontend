@@ -7,7 +7,7 @@ import Home from "./ezSplit/home";
 import TestPage from "./TestPage";
 import ApiTest from "./ApiTest";
 import EZSplitOptions from "./ezSplit/ezSplitOptions";
-import NumberOfGuests from "./EZSplit/NumberOfGuests.jsx";
+import NumberOfGuests from "./EZSplit/numberOfGuest";
 import EZSplitPaymentPage from "./ezSplit/ezSplit-PaymentPage";
 import SplitEvenlyPaymentPage from "./splitEvenly/splitEvenlyPaymentPage";
 import CustomSplitPaymentPage from "./customSplit/customSplitPaymentPage";
