@@ -37,17 +37,17 @@ const SplitEvenlyPaymentPage = () => {
       try {
         console.log(
           "Fetching menu items from:",
-          `http://localhost:3000/menu/${tableNumber}`
+          `http://localhost:3000/menuTable/${tableNumber}`
         );
 
         const response = await fetch(
-          `https://ezsplit.onrender.com/menu/${tableNumber}`
+          `http://localhost:3000/menuTable/${tableNumber}`
         );
 
         if (!response.ok) {
           // Try general menu endpoint if table-specific fails
           const generalResponse = await fetch(
-            "https://ezsplit.onrender.com/menu"
+            "http://localhost:3000/menuTable"
           );
           if (!generalResponse.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

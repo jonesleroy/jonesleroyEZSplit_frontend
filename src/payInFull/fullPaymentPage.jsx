@@ -27,18 +27,20 @@ const FullPaymentPage = () => {
       try {
         console.log(
           "Fetching menu items from:",
-          `http://localhost:3000/menu/${tableNumber}`
+          `http://localhost:3000/menuTable/${tableNumber}`
         );
 
         // First try the table-specific endpoint
-        let response = await fetch(`https://ezsplit.onrender.com/menu/${tableNumber}`);
+        let response = await fetch(
+          `http://localhost:3000/menuTable/${tableNumber}`
+        );
 
         // If that fails, try the general menu endpoint
         if (!response.ok) {
           console.log(
             "Table-specific endpoint failed, trying general menu endpoint"
           );
-          response = await fetch("https://ezsplit.onrender.com/menu");
+          response = await fetch("http://localhost:3000/menuTable");
         }
 
         if (!response.ok) {
@@ -47,12 +49,8 @@ const FullPaymentPage = () => {
 
         const items = await response.json();
         setMenuItems(items);
-        console.log(
-          "✅ Loaded menu items for full payment:",
-          items.length,
-          "items"
-        );
-        console.log("First few items:", items.slice(0, 3));
+        console.log(items);
+        // console.log("First few items:", items.slice(0, 3));
       } catch (err) {
         console.error("❌ Error loading menu:", err);
         setError(`Failed to load menu items: ${err.message}`);
